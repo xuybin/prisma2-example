@@ -1,102 +1,36 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with TypeScript** based on [Photon.js](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
+This example shows how to implement a **GraphQL server with TypeScript** based on [Photon.js](https://photonjs.prisma.io/), [apollo-server-micro](https://www.npmjs.com/package/apollo-server-micro) and [GraphQL Nexus](https://nexus.js.org/).
 
 ## How to use
 
 ### 1. Download example & install dependencies
 
-Clone the `prisma2` branch of this repository:
+Clone the `prisma2-example` repository:
 
 ```
-git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
+git clone git@github.com:xuybin/prisma2-example.git
 ```
 
 Install Node dependencies:
 
 ```
-cd prisma-examples/typescript/graphql
+cd prisma2-example
 npm install
 ```
 
-### 2. Install the Prisma 2 CLI
 
-To run the example, you need the [Prisma 2 CLI](https://github.com/prisma/prisma2/blob/master/docs/prisma-2-cli.md):
-
-```
-npm install -g prisma2
-```
-
-### 3. Set up database
-
-For this example, you'll use a simple [SQLite database](https://www.sqlite.org/index.html). To set up your database, run:
-
-```
-prisma2 lift save --name 'init'
-prisma2 lift up
-```
-
-You can now use the [SQLite Browser](https://sqlitebrowser.org/) to view and edit your data in the `./prisma/dev.db` file that was created when you ran `prisma2 lift up`.
-
-<Details>
-<Summary><b>Alternative: </b>Connect to your own database</Summary>
-
-Prisma supports MySQL and PostgreSQL at the moment. If you would like to connect to your own database, you can do so by specifying a different data source in the [Prisma schema file](prisma/schema.prisma).
-
-For a MySQL provider:
-```
-datasource mysql {
-    provider = "mysql"
-    url      = "mysql://johndoe:secret42@localhost:3306/mydatabase"
-}
-```
-
-*OR*
-
-For a PostgreSQL provider:
-```
-datasource postgresql {
-  provider = "postgresql"
-  url      = "postgresql://johndoe:secret42@localhost:5432/mydatabase?schema=public"
-}
-```
-
-> Note: In the above example connection strings, `johndoe` would be the username to your database, `secret42` the password, `mydatabase` the name of your database, and `public` the [PostgreSQL schema](https://www.postgresql.org/docs/9.1/ddl-schemas.html). 
-
-Then to migrate your database, run:
-
-```sh
-prisma2 lift save --name 'init'
-prisma2 lift up
-```
-</Details>
-
-### 4. Generate Photon (type-safe database client)
-
-Run the following command to generate [Photon.js](https://photonjs.prisma.io/):
-
-```
-prisma2 generate
-```
-
-Now you can seed your database using the `seed` script from `package.json`:
-
-```
-npm run seed
-```
-
-
-### 5. Start the GraphQL server
+### 2. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
 ```
-npm run start
+npm run dev
 ```
 
 Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-### 6. Using the GraphQL API
+### 3. Using the GraphQL API
 
 The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
@@ -219,14 +153,3 @@ mutation {
 </Details>
 
 
-### 7. Changing the GraphQL schema
-
-To make changes to the GraphQL schema, you need to manipulate the `Query` and `Mutation` types that are defined in [`index.ts`](./src/index.ts). 
-
-Note that the [`start`](./package.json#L4) script also starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./src/schema.graphql) updates whenever you make changes in to the `Query` or `Mutation` types inside your TypeScript code.
-
-## Next steps
-
-- Read the [Prisma 2 announcement](https://www.prisma.io/blog/announcing-prisma-2-zq1s745db8i5/)
-- Check out the [Prisma 2 docs](https://github.com/prisma/prisma2)
-- Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
