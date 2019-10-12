@@ -1,0 +1,20 @@
+{
+  "name": "typescript-graphql",
+  "scripts": {
+    "dev": "ts-node --log-error node_modules/micro-dev/bin/micro-dev.js src/index.ts",
+    "seed": "ts-node prisma/seed.ts",
+    "postinstall": "prisma2 generate"
+  },
+  "dependencies": {
+    "apollo-server-micro": "^2.9.6",
+    "micro": "^9.3.4",
+    "nexus": "^0.12.0-beta.13"
+  },
+  "devDependencies": {
+    "@types/node": "10.14.20",
+    "micro-dev": "^3.0.0",
+    "prisma2": "^2.0.0-preview014",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}
