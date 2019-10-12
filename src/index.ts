@@ -119,6 +119,7 @@ const schema = makeSchema({
   types: [Query, Mutation, Post, User, nexusPrisma],
   outputs: {
     typegen: join(__dirname, '../typings/generated/index.d.ts'),
+    //schema: join(__dirname, '/schema.graphql'),
   },
   typegenAutoConfig: {
     sources: [
